@@ -1,0 +1,48 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="admin">
+        <createTable tableName="role">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="user_roles">
+            <column name="user_id" type="BIGINT"/>
+            <column name="roles_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseColumnNames="user_id"
+                baseTableName="user"
+                constraintName="fk_user_role_user"
+                referencedColumnNames="id"
+                referencedTableName="user"
+        />
+        <addForeignKeyConstraint
+                baseColumnNames="roles_id"
+                baseTableName="user_roles"
+                constraintName="fk_user_role_role"
+                referencedColumnNames="id"
+                referencedTableName="role"
+        />
+
+    </changeSet>
+
+</databaseChangeLog>
