@@ -1,0 +1,66 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2" author="admin">
+        <!-- Roles -->
+        <insert tableName="role">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="ROLE_CLIENT"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="ROLE_VIP_CLIENT"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="ROLE_MANAGER"/>
+        </insert>
+
+        <!-- Users -->
+        <insert tableName="user">
+            <column name="id" valueNumeric="1"/>
+            <column name="email" value="admin@example.com"/>
+            <column name="name" value="Admin User"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="2"/>
+            <column name="email" value="client@example.com"/>
+            <column name="name" value="Client User"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="3"/>
+            <column name="email" value="vip@example.com"/>
+            <column name="name" value="VIP Client"/>
+        </insert>
+        <insert tableName="user">
+            <column name="id" valueNumeric="4"/>
+            <column name="email" value="manager@example.com"/>
+            <column name="name" value="Manager User"/>
+        </insert>
+
+        <!-- Roles for users -->
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="roles_id" valueNumeric="1"/> <!-- ADMIN -->
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="roles_id" valueNumeric="2"/> <!-- CLIENT -->
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="3"/>
+            <column name="roles_id" valueNumeric="3"/> <!-- VIP_CLIENT -->
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="4"/>
+            <column name="roles_id" valueNumeric="4"/> <!-- MANAGER -->
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
