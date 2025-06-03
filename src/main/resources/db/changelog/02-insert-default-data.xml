@@ -6,61 +6,61 @@
     <changeSet id="2" author="admin">
         <!-- Roles -->
         <insert tableName="roles">
-            <column name="id" valueNumeric="1"/>
             <column name="name" value="ROLE_ADMIN"/>
         </insert>
         <insert tableName="roles">
-            <column name="id" valueNumeric="2"/>
             <column name="name" value="ROLE_CLIENT"/>
         </insert>
         <insert tableName="roles">
-            <column name="id" valueNumeric="3"/>
             <column name="name" value="ROLE_VIP_CLIENT"/>
         </insert>
         <insert tableName="roles">
-            <column name="id" valueNumeric="4"/>
             <column name="name" value="ROLE_MANAGER"/>
         </insert>
 
         <!-- Users -->
         <insert tableName="users">
-            <column name="id" valueNumeric="1"/>
-            <column name="email" value="admin@example.com"/>
-            <column name="name" value="Admin User"/>
+            <column name="email" value="roman1985aleks@gmail.com"/>
+            <column name="name" value="Roman Manzhula"/>
+            <column name="password" value="$2a$10$GQvRK74E42F52zESXphGdOWyo3zGsvXKd5AzO0JumKRwXi7iC37na"/>
         </insert>
         <insert tableName="users">
-            <column name="id" valueNumeric="2"/>
-            <column name="email" value="client@example.com"/>
-            <column name="name" value="Client User"/>
+            <column name="email" value="roman1985al@ukr.net"/>
+            <column name="name" value="RoMANzhula"/>
+            <column name="password" value="$2a$10$GQvRK74E42F52zESXphGdOWyo3zGsvXKd5AzO0JumKRwXi7iC37na"/>
         </insert>
         <insert tableName="users">
-            <column name="id" valueNumeric="3"/>
             <column name="email" value="vip@example.com"/>
             <column name="name" value="VIP Client"/>
+            <column name="password" value="$2a$10$GQvRK74E42F52zESXphGdOWyo3zGsvXKd5AzO0JumKRwXi7iC37na"/>
         </insert>
         <insert tableName="users">
-            <column name="id" valueNumeric="4"/>
             <column name="email" value="manager@example.com"/>
             <column name="name" value="Manager User"/>
+            <column name="password" value="$2a$10$GQvRK74E42F52zESXphGdOWyo3zGsvXKd5AzO0JumKRwXi7iC37na"/>
         </insert>
 
         <!-- Roles for users -->
-        <insert tableName="user_roles">
-            <column name="user_id" valueNumeric="1"/>
-            <column name="roles_id" valueNumeric="1"/> <!-- ADMIN -->
-        </insert>
-        <insert tableName="user_roles">
-            <column name="user_id" valueNumeric="2"/>
-            <column name="roles_id" valueNumeric="2"/> <!-- CLIENT -->
-        </insert>
-        <insert tableName="user_roles">
-            <column name="user_id" valueNumeric="3"/>
-            <column name="roles_id" valueNumeric="3"/> <!-- VIP_CLIENT -->
-        </insert>
-        <insert tableName="user_roles">
-            <column name="user_id" valueNumeric="4"/>
-            <column name="roles_id" valueNumeric="4"/> <!-- MANAGER -->
-        </insert>
+        <sql>
+            INSERT INTO user_roles (user_id, roles_id)
+            SELECT u.id, r.id FROM users u, roles r
+            WHERE u.email = 'roman1985aleks@gmail.com' AND r.name = 'ROLE_ADMIN';
+        </sql>
+        <sql>
+            INSERT INTO user_roles (user_id, roles_id)
+            SELECT u.id, r.id FROM users u, roles r
+            WHERE u.email = 'roman1985al@ukr.net' AND r.name = 'ROLE_CLIENT';
+        </sql>
+        <sql>
+            INSERT INTO user_roles (user_id, roles_id)
+            SELECT u.id, r.id FROM users u, roles r
+            WHERE u.email = 'vip@example.com' AND r.name = 'ROLE_VIP_CLIENT';
+        </sql>
+        <sql>
+            INSERT INTO user_roles (user_id, roles_id)
+            SELECT u.id, r.id FROM users u, roles r
+            WHERE u.email = 'manager@example.com' AND r.name = 'ROLE_MANAGER';
+        </sql>
     </changeSet>
 
 </databaseChangeLog>
