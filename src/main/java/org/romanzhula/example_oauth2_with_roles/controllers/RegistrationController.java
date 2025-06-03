@@ -2,7 +2,7 @@ package org.romanzhula.example_oauth2_with_roles.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.romanzhula.example_oauth2_with_roles.dto.RegistrationRequest;
+import org.romanzhula.example_oauth2_with_roles.dto.requests.RegistrationRequest;
 import org.romanzhula.example_oauth2_with_roles.services.RegistrationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
