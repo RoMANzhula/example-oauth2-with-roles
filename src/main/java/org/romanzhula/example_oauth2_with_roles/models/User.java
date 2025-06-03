@@ -1,9 +1,11 @@
 package org.romanzhula.example_oauth2_with_roles.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
@@ -21,6 +23,10 @@ public class User {
     private String email;
 
     private String name;
+
+    @JsonIgnore
+    @Column(nullable = false)
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
