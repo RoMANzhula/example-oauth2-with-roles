@@ -1,0 +1,48 @@
+
+Use H2  -   http://localhost:8080/h2-console
+
+After login via Google or GitHub go to:
+!!! In DB user must has email same as on Google (for Google auth) or GitHub (for GitHub auth)
+
+http://localhost:8080/api/v1/home           - for all roles
+http://localhost:8080/api/v1/admin          - for role ADMIN
+http://localhost:8080/api/v1/client         - for role CLIENT
+http://localhost:8080/api/v1/vip            - for role VIP_CLIENT
+http://localhost:8080/api/v1/manager        - for role MANAGER
+
+
+http://localhost:8080/login                 - for authentication with roles
+http://localhost:8080/logout                - redirect to login page
+http://localhost:8080/api/v1/register       - with default CLIENT role
+
+
+    This app has settings that give us the following options:
+- Registration
+    for Postman testing:
+        POST    http://localhost:8080/api/v1/register
+        Headers:
+            Content-Type: application/json
+        body -> raw (JSON):
+            {
+              "email": "testuser@example.com",
+              "name": "Test User",
+              "password": "123",
+              "confirmPassword": "123"
+            }
+        we get answer body (JSON):
+            User registered successfully
+
+- Login via username(email) and password
+    for Postman testing:
+        POST    http://localhost:8080/api/v1/auth/login
+        Headers:
+            Content-Type: application/x-www-form-urlencoded
+        body -> x-www-form-urlencoded:
+            username        user@example
+            password        123
+        we get answer body(JSON):
+            Login successful
+        Cookies:
+            JSESSIONID      472E04935B7E7A496FE4B098471960CF
+
+- Login via OAuth2 for Google or GitHub
